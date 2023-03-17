@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Data
 @AllArgsConstructor
-public class CipherTextResponseObject {
+public class EncryptResponseObject {
     @JsonProperty("cipher_text")
     private String cipherText;
 }

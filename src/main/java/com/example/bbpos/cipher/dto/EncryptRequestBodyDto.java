@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class EncryptParamDto {
+public class EncryptRequestBodyDto {
   @NotNull(message = "plain text must not be null")
   @JsonProperty("plain_text")
   private String plainText;

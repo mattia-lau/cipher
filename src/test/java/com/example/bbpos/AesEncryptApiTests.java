@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.example.bbpos.cipher.dto.EncryptParamDto;
+import com.example.bbpos.cipher.dto.EncryptRequestBodyDto;
 
 import io.restassured.RestAssured;
 
@@ -31,7 +31,7 @@ public class AesEncryptApiTests {
         RestAssured.given()
                 .when()
                 .header("Content-Type", "application/json")
-                .body(new EncryptParamDto(null, "404D635166546A576E5A723475377721"))
+                .body(new EncryptRequestBodyDto(null, "404D635166546A576E5A723475377721"))
                 .post("/aes/encrypt")
                 .then()
                 .statusCode(400)
@@ -43,7 +43,7 @@ public class AesEncryptApiTests {
         RestAssured.given()
                 .when()
                 .header("Content-Type", "application/json")
-                .body(new EncryptParamDto("", null))
+                .body(new EncryptRequestBodyDto("", null))
                 .post("/aes/encrypt")
                 .then()
                 .statusCode(400)
@@ -55,7 +55,7 @@ public class AesEncryptApiTests {
         RestAssured.given()
                 .when()
                 .header("Content-Type", "application/json")
-                .body(new EncryptParamDto("", "ABC"))
+                .body(new EncryptRequestBodyDto("", "ABC"))
                 .post("/aes/encrypt")
                 .then()
                 .statusCode(400)
@@ -67,7 +67,7 @@ public class AesEncryptApiTests {
         RestAssured.given()
                 .when()
                 .header("Content-Type", "application/json")
-                .body(new EncryptParamDto("Apple", "404D635166546A576E5A723475377721"))
+                .body(new EncryptRequestBodyDto("Apple", "404D635166546A576E5A723475377721"))
                 .post("/aes/encrypt")
                 .then()
                 .statusCode(200)

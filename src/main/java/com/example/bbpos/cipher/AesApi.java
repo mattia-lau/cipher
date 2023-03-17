@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import com.example.bbpos.cipher.dto.DecryptRequestBodyDto;
-import com.example.bbpos.cipher.dto.EncryptParamDto;
-import com.example.bbpos.cipher.model.CipherTextResponseObject;
+import com.example.bbpos.cipher.dto.EncryptRequestBodyDto;
+import com.example.bbpos.cipher.model.EncryptResponseObject;
 import com.example.bbpos.cipher.model.DecryptResponseObject;
 
 import jakarta.validation.Valid;
@@ -21,11 +21,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AesApi {
     @PostMapping("encrypt")
-    public ResponseEntity<CipherTextResponseObject> encrypt(
-            @Valid @RequestBody EncryptParamDto param) throws Exception {
+    public ResponseEntity<EncryptResponseObject> encrypt(
+            @Valid @RequestBody EncryptRequestBodyDto param) throws Exception {
         String cipherText = Crypto.encrypt(param.getPlainText().getBytes(), param.getAesKey());
-        CipherTextResponseObject dto = new CipherTextResponseObject(cipherText);
-        return new ResponseEntity<CipherTextResponseObject>(dto, HttpStatus.OK);
+        EncryptResponseObject dto = new EncryptResponseObject(cipherText);
+        return new ResponseEntity<EncryptResponseObject>(dto, HttpStatus.OK);
     }
 
     @PostMapping("decrypt")
